@@ -1,0 +1,197 @@
+---
+import { getKnowledge } from '../lib/airtable';
+
+const knowledge = await getKnowledge();
+
+const fallbackTestimonials = [
+  {
+    client: 'Ayuda en Acción (AEA)',
+    contact: 'Careli Taboada',
+    role: 'Comunicadora y Administradora',
+    project: 'Administrador de contenidos con Airtable y Svelte, publicado en Vercel.',
+    type: 'CMS Personalizado',
+  },
+  {
+    client: 'PUCP',
+    contact: 'Pontificia Universidad Católica del Perú',
+    role: 'Universidad',
+    project: 'Página de contenidos para exponer proyectos de estudiantes, construida con Astro y publicada en Vercel.',
+    type: 'Sitio Web',
+  },
+];
+
+const testimonials = knowledge?.testimonios ?? fallbackTestimonials;
+---
+
+<section id="testimonios">
+  <div class="container">
+    <div class="section-header">
+      <span class="badge">Casos de éxito</span>
+      <h2>Clientes que confían en nosotros</h2>
+      <p>Proyectos reales entregados con testimonios grabados en video.</p>
+    </div>
+    <div class="testimonials-grid">
+      {testimonials.map(t => (
+        <div class="card testimonial-card">
+          <span class="testimonial-type">{t.type}</span>
+          <h3>{t.client}</h3>
+          <p class="testimonial-project">{t.project}</p>
+          <div class="testimonial-footer">
+            <div class="testimonial-avatar">
+              {t.contact[0]}
+            </div>
+            <div>
+              <span class="testimonial-name">{t.contact}</span>
+              <span class="testimonial-role">{t.role}</span>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Tech Stack -->
+    <div class="stack-section">
+      <h3 class="stack-title">Nuestro Stack Tecnológico</h3>
+      <div class="stack-grid">
+        <div class="stack-item">
+          <span class="stack-name">Astro</span>
+          <span class="stack-desc">Framework web</span>
+        </div>
+        <div class="stack-item">
+          <span class="stack-name">Svelte</span>
+          <span class="stack-desc">UI interactivo</span>
+        </div>
+        <div class="stack-item">
+          <span class="stack-name">Vercel</span>
+          <span class="stack-desc">Hosting & CDN</span>
+        </div>
+        <div class="stack-item">
+          <span class="stack-name">Airtable</span>
+          <span class="stack-desc">Base de datos</span>
+        </div>
+        <div class="stack-item">
+          <span class="stack-name">Supabase</span>
+          <span class="stack-desc">PostgreSQL</span>
+        </div>
+        <div class="stack-item">
+          <span class="stack-name">Claude Code</span>
+          <span class="stack-desc">IA para desarrollo</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+  }
+
+  .testimonial-card {
+    padding: 2rem;
+  }
+
+  .testimonial-type {
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    background: var(--color-accent-glow);
+    color: var(--color-accent-light);
+    border-radius: 9999px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+
+  .testimonial-card h3 {
+    color: var(--color-text);
+    margin-bottom: 0.75rem;
+    font-size: 1.3rem;
+  }
+
+  .testimonial-project {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .testimonial-footer {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .testimonial-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--color-surface-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--color-accent-light);
+  }
+
+  .testimonial-name {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  .testimonial-role {
+    font-size: 0.8rem;
+    color: var(--color-text-secondary);
+  }
+
+  .stack-section {
+    text-align: center;
+  }
+
+  .stack-title {
+    font-size: 1.1rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+  }
+
+  .stack-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .stack-item {
+    padding: 1rem 1.5rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    text-align: center;
+    min-width: 120px;
+  }
+
+  .stack-name {
+    display: block;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--color-text);
+  }
+
+  .stack-desc {
+    font-size: 0.75rem;
+    color: var(--color-text-secondary);
+  }
+
+  @media (max-width: 768px) {
+    .testimonials-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

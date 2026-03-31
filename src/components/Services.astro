@@ -1,0 +1,130 @@
+---
+import { getKnowledge } from '../lib/airtable';
+
+const knowledge = await getKnowledge();
+
+const fallbackServices = [
+  {
+    icon: '🌐',
+    title: 'Desarrollo Web',
+    description: 'Sitios web modernos con Astro y Svelte. Landing pages, portafolios y gestores de contenido desplegados en Vercel.',
+    features: ['Diseño responsive', 'HTTPS y CDN global', 'Optimización de velocidad'],
+  },
+  {
+    icon: '🎬',
+    title: 'Videos IA',
+    description: 'Tu marca merece más que un video genérico. Usamos IA de última generación para producir contenido que parece de gran presupuesto, pero hecho a tu medida. Para tus redes, tus clientes o tu equipo. Sin plantillas. Sin stock. Solo tu visión, hecha video.',
+    features: ['Videos de 30s a 4 min', 'Proceso creativo IA', 'Edición profesional'],
+    video: '/videos/video-ia-web.mp4',
+  },
+  {
+    icon: '🗄️',
+    title: 'Base de Datos',
+    description: 'Airtable para uso interno y gestores de contenido. Supabase (PostgreSQL) para apps con muchos usuarios.',
+    features: ['Migración incluida', 'Administración completa', 'Escalable'],
+  },
+  {
+    icon: '📝',
+    title: 'Gestor de Contenido',
+    description: 'Interfaz personalizada para que tu equipo gestione contenido fácilmente, o acceso directo a Airtable.',
+    features: ['UI personalizado', 'Fácil de usar', 'Base de datos incluida'],
+  },
+  {
+    icon: '☁️',
+    title: 'Hosting y Dominio',
+    description: 'Alojamiento en Vercel con SSL automático, CDN global y monitoreo. Gestionamos tu dominio.',
+    features: ['SSL automático', 'Deploy continuo', 'Monitoreo 24/7'],
+  },
+  {
+    icon: '🤖',
+    title: 'Automatización IA',
+    description: 'Bot interno con IA, integraciones con Slack, GitHub y Vercel para optimizar flujos de trabajo.',
+    features: ['Notificaciones automáticas', 'Asistente IA', 'Integraciones'],
+  },
+];
+
+const services = knowledge?.servicios ?? fallbackServices;
+---
+
+<section id="servicios">
+  <div class="container">
+    <div class="section-header">
+      <span class="badge">Lo que hacemos</span>
+      <h2 style="margin-top: 1.5rem;">Servicios</h2>
+      <p>Soluciones pensadas para impulsar tu transformación con tecnología.</p>
+    </div>
+    <div class="grid-3">
+      {services.map(service => (
+        <div class={`card service-card${service.video ? ' has-video' : ''}`}>
+          <span class="service-icon">{service.icon}</span>
+          <h3>{service.title}</h3>
+          <p>{service.description}</p>
+          {service.video && (
+            <div class="service-video">
+              <video controls preload="metadata" playsinline>
+                <source src={service.video} type="video/mp4" />
+              </video>
+            </div>
+          )}
+          <ul class="service-features">
+            {service.features.map(f => (
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-green)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                {f}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .service-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .service-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .service-card h3 {
+    color: var(--color-text);
+  }
+
+  .service-card p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .service-features {
+    margin-top: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .service-features li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+  }
+
+  .service-video {
+    margin-top: 0.5rem;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+  }
+
+  .service-video video {
+    width: 100%;
+    display: block;
+    border-radius: var(--radius-sm);
+  }
+</style>

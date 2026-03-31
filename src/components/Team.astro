@@ -1,0 +1,127 @@
+---
+import { getKnowledge } from '../lib/airtable';
+
+const knowledge = await getKnowledge();
+
+const fallbackTeam = [
+  {
+    name: 'Jorge Vicuña',
+    role: 'Software Developer',
+    bio: 'Ex Yape, ex Interbank, docente PUCP y ganador de Startup 2023. Lidera el desarrollo técnico y la arquitectura de todos los proyectos.',
+    skills: ['Astro', 'Svelte', 'Supabase', 'Claude Code'],
+    photo: '/images/jorge.jpg',
+  },
+  {
+    name: 'Adriana Suárez',
+    role: 'IA Video Creator',
+    bio: 'Ex Crehana, especialista en contenido educativo. Dirige la producción audiovisual con IA y la propuesta narrativa de todos los proyectos.',
+    skills: ['Kling AI', 'Gemini', 'Higgsfield', 'Claude Code'],
+    photo: '/images/adriana.jpg',
+  },
+];
+
+const team = knowledge?.equipo ?? fallbackTeam;
+---
+
+<section id="equipo">
+  <div class="container">
+    <div class="section-header">
+      <span class="badge">Quiénes somos</span>
+      <h2 style="margin-top: 1.5rem;">Nuestro Equipo</h2>
+      <p>Dupla pequeña que da resultados grandes.</p>
+    </div>
+    <div class="team-grid">
+      {team.map(member => (
+        <div class="card team-card">
+          <div class="team-avatar">
+            {member.photo
+              ? <img src={member.photo} alt={member.name} />
+              : member.name.split(' ').map(n => n[0]).join('')
+            }
+          </div>
+          <h3>{member.name}</h3>
+          <span class="team-role">{member.role}</span>
+          <p>{member.bio}</p>
+          <div class="team-skills">
+            {member.skills.map(skill => (
+              <span class="skill-tag">{skill}</span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .team-card {
+    text-align: center;
+    padding: 2.5rem 2rem;
+  }
+
+  .team-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--color-accent), #a78bfa);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: white;
+    overflow: hidden;
+  }
+
+  .team-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+  }
+
+  .team-card h3 {
+    color: var(--color-text);
+    margin-bottom: 0.25rem;
+  }
+
+  .team-role {
+    display: block;
+    color: var(--color-accent-light);
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+
+  .team-card p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  .team-skills {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.4rem;
+    margin-top: 1.25rem;
+  }
+
+  .skill-tag {
+    padding: 0.3rem 0.7rem;
+    background: var(--color-surface-2);
+    border: 1px solid var(--color-border);
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    color: var(--color-text-secondary);
+    font-family: var(--font-mono);
+  }
+</style>

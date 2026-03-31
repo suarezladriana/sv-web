@@ -1,0 +1,247 @@
+---
+const casosExito = [
+  {
+    title: 'Ayuda en Acción (AEA)',
+    description: 'Administrador de contenidos con Airtable y Svelte para gestionar publicaciones y recursos de la ONG.',
+    video: '/videos/caso-aea-web.mp4',
+    poster: '/videos/thumbnail-aea.jpg',
+    tags: ['Svelte', 'Airtable', 'Vercel'],
+  },
+  {
+    title: 'PUCP',
+    description: 'Página de contenidos para exponer proyectos de estudiantes de la Pontificia Universidad Católica del Perú.',
+    video: '/videos/caso-pucp-web.mp4',
+    poster: '/videos/thumbnail-pucp.jpg',
+    tags: ['Astro', 'Vercel', 'Supabase'],
+  },
+];
+
+---
+
+<section id="portafolio">
+  <div class="container">
+    <div class="section-header">
+      <span class="badge">Casos de éxito</span>
+      <h2 style="margin-top: 1.5rem;">Clientes que confían en nosotros</h2>
+      <p>Escucha los testimonios de nuestros proyectos.</p>
+    </div>
+
+    <!-- Casos de éxito -->
+    <h3 class="portfolio-subtitle">Casos de éxito</h3>
+    <div class="portfolio-grid">
+      {casosExito.map(caso => (
+        <div class="card portfolio-card">
+          <div class="video-wrapper">
+            <video controls preload="metadata" playsinline poster={caso.poster}>
+              <source src={caso.video} type="video/mp4" />
+              Tu navegador no soporta video HTML5.
+            </video>
+          </div>
+          <div class="portfolio-info">
+            <h4>{caso.title}</h4>
+            <p>{caso.description}</p>
+            <div class="portfolio-tags">
+              {caso.tags.map(tag => (
+                <span class="tag">{tag}</span>
+              ))}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Tech Stack -->
+    <div class="stack-section">
+      <h3 class="stack-title">¿Con qué tecnología trabajamos?</h3>
+      <div class="stack-grid">
+        <div class="stack-item">
+          <img src="/images/logos/astro.svg" alt="Astro" class="stack-logo" />
+          <span class="stack-name">Astro</span>
+          <span class="stack-desc">Framework web</span>
+        </div>
+        <div class="stack-item">
+          <img src="/images/logos/svelte.svg" alt="Svelte" class="stack-logo" />
+          <span class="stack-name">Svelte</span>
+          <span class="stack-desc">UI interactivo</span>
+        </div>
+        <div class="stack-item">
+          <img src="/images/logos/vercel.svg" alt="Vercel" class="stack-logo" />
+          <span class="stack-name">Vercel</span>
+          <span class="stack-desc">Hosting & CDN</span>
+        </div>
+        <div class="stack-item">
+          <img src="/images/logos/airtable.svg" alt="Airtable" class="stack-logo" />
+          <span class="stack-name">Airtable</span>
+          <span class="stack-desc">Base de datos</span>
+        </div>
+        <div class="stack-item">
+          <img src="/images/logos/supabase.svg" alt="Supabase" class="stack-logo" />
+          <span class="stack-name">Supabase</span>
+          <span class="stack-desc">PostgreSQL</span>
+        </div>
+        <div class="stack-item">
+          <img src="/images/logos/claude.svg" alt="Claude Code" class="stack-logo" />
+          <span class="stack-name">Claude Code</span>
+          <span class="stack-desc">IA para desarrollo</span>
+        </div>
+        <div class="stack-item">
+          <img src="/images/logos/gemini.svg" alt="Gemini" class="stack-logo" />
+          <span class="stack-name">Gemini</span>
+          <span class="stack-desc">IA generativa</span>
+        </div>
+        <div class="stack-item">
+          <img src="/images/logos/kling.svg" alt="Kling IA" class="stack-logo" />
+          <span class="stack-name">Kling IA</span>
+          <span class="stack-desc">Videos con IA</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .portfolio-subtitle {
+    font-size: 1.2rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .portfolio-card {
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .video-wrapper {
+    position: relative;
+    width: 100%;
+    background: var(--color-surface-2);
+  }
+
+  .video-wrapper video {
+    width: 100%;
+    display: block;
+    border-radius: var(--radius) var(--radius) 0 0;
+  }
+
+  .portfolio-info {
+    padding: 1.5rem;
+  }
+
+  .portfolio-info h4 {
+    color: var(--color-text);
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .portfolio-info p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .portfolio-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tag {
+    padding: 0.25rem 0.7rem;
+    background: var(--color-accent-glow);
+    color: var(--color-accent-light);
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+  }
+
+  .tag-ia {
+    background: var(--color-green-glow);
+    color: var(--color-green);
+  }
+
+  .portfolio-featured {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .featured-card .video-wrapper video {
+    border-radius: var(--radius) var(--radius) 0 0;
+  }
+
+  .featured-badge {
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    background: var(--color-green-glow);
+    color: var(--color-green);
+    border-radius: 9999px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+  }
+
+  .stack-section {
+    text-align: center;
+    margin-top: 4rem;
+  }
+
+  .stack-title {
+    font-size: 1.1rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+  }
+
+  .stack-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .stack-item {
+    padding: 1rem 1.5rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    text-align: center;
+    min-width: 120px;
+  }
+
+  .stack-logo {
+    width: 32px;
+    height: 32px;
+    margin-bottom: 0.5rem;
+  }
+
+  .stack-name {
+    display: block;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--color-text);
+  }
+
+  .stack-desc {
+    font-size: 0.75rem;
+    color: var(--color-text-secondary);
+  }
+
+  @media (max-width: 768px) {
+    .portfolio-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .portfolio-featured {
+      max-width: 100%;
+    }
+  }
+</style>

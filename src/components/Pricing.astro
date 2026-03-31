@@ -1,0 +1,432 @@
+---
+import { getKnowledge } from '../lib/airtable';
+
+const knowledge = await getKnowledge();
+const precios = knowledge?.precios ?? null;
+
+// Datos de video (de Airtable o fallback)
+const videoTiers = precios?.videos ?? [
+  { duracion: '30 seg', precio: 100, soles: '' },
+  { duracion: 'Hasta 1 min', precio: 200, soles: 'S/750' },
+  { duracion: '1 - 2 min', precio: 350, soles: 'S/1,300' },
+  { duracion: '3 - 4 min', precio: 530, soles: 'S/2,000' },
+];
+---
+
+<section id="precios">
+  <div class="container">
+    <div class="section-header">
+      <span class="badge">Transparencia total</span>
+      <h2 style="margin-top: 1.5rem;">Precios</h2>
+      <p>Sin sorpresas, conoce todas nuestras tarifas.</p>
+    </div>
+
+    <!-- Web Pricing -->
+    <div class="pricing-category">
+      <h3 class="category-title">Páginas Web</h3>
+
+      <div class="video-showcase">
+        <div class="video-showcase-player">
+          <video autoplay loop muted playsinline>
+            <source src="/videos/web-demo-loop.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <div class="video-showcase-text">
+          <p>Sitios web modernos, rápidos y a tu medida. Diseñados para convertir visitantes en clientes.</p>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card pricing-card">
+          <div class="pricing-header">
+            <span class="pricing-label">Pago único</span>
+            <div class="pricing-amount">
+              <span class="price">$200</span>
+            </div>
+            <p>Creación de página web a medida</p>
+          </div>
+          <ul class="pricing-features">
+            <li class="included">Diseño, desarrollo y publicación</li>
+            <li class="included">Diseño responsive</li>
+            <li class="included">HTTPS, CDN global, SSL</li>
+            <li class="included">Optimización de velocidad</li>
+            <li class="included">Botón de WhatsApp incluido</li>
+            <li class="included">Páginas legales incluidas</li>
+            <li class="extra">Funcionalidades extras: $29 c/u</li>
+          </ul>
+          <p class="pricing-note">Entrega: 5-7 días hábiles</p>
+        </div>
+
+        <div class="card pricing-card featured">
+          <div class="featured-badge">Recomendado</div>
+          <div class="pricing-header">
+            <span class="pricing-label">Operación mensual</span>
+            <div class="pricing-amount">
+              <span class="price">$65</span>
+              <span class="price-period">/mes</span>
+            </div>
+            <p>Todo incluido para que tu web funcione</p>
+          </div>
+          <ul class="pricing-features">
+            <li class="included">Hosting + dominio (Vercel)</li>
+            <li class="included">Base de datos (Airtable)</li>
+            <li class="included">Gestión de contenido</li>
+            <li class="included">Monitoreo continuo</li>
+            <li class="included">Actualizaciones vía correo o Slack</li>
+            <li class="discount">Plan anual: $55/mes (ahorra $120/año)</li>
+          </ul>
+          <p class="pricing-note">El código y datos son tuyos. Si dejas el servicio, se entrega todo.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Video Pricing -->
+    <div class="pricing-category">
+      <h3 class="category-title">Videos con IA</h3>
+
+      <div class="video-showcase">
+        <div class="video-showcase-player">
+          <video autoplay loop muted playsinline>
+            <source src="/videos/video-ia-web.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <div class="video-showcase-text">
+          <p>Tu marca merece más que un video genérico, producimos tu visión a medida.</p>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card pricing-card">
+          <div class="pricing-header">
+            <span class="pricing-label">Pago único</span>
+            <div class="pricing-amount">
+              <span class="price">$100</span>
+            </div>
+            <p>1 video de 30s a 1 min</p>
+          </div>
+          <ul class="pricing-features">
+            <li class="included">Generación con IA</li>
+            <li class="included">Edición profesional</li>
+            <li class="included">Voz en off con IA</li>
+            <li class="included">Música con licencia comercial</li>
+            <li class="included">1 revisión incluida</li>
+            <li class="extra">Extras: $29-49 c/u</li>
+          </ul>
+          <p class="pricing-note">Entrega: 3-5 días hábiles</p>
+        </div>
+
+        <div class="card pricing-card featured">
+          <div class="featured-badge">Recomendado</div>
+          <div class="pricing-header">
+            <span class="pricing-label">Plan mensual</span>
+            <div class="pricing-amount">
+              <span class="price">$250</span>
+              <span class="price-period">/mes</span>
+            </div>
+            <p>3 videos de 30s a 1 min al mes</p>
+          </div>
+          <ul class="pricing-features">
+            <li class="included">Generación con IA</li>
+            <li class="included">Edición profesional</li>
+            <li class="included">Voz en off con IA</li>
+            <li class="included">Música con licencia comercial</li>
+            <li class="included">Revisiones incluidas</li>
+            <li class="included">Equipo dedicado</li>
+            <li class="discount">Plan anual: $212/mes (15% dto)</li>
+          </ul>
+          <p class="pricing-note">Ideal para mantener tus redes activas con contenido profesional.</p>
+        </div>
+      </div>
+
+      <!-- Extras de video -->
+      <div class="extras video-extras">
+        <h4>Extras para videos — $29-49 c/u</h4>
+        <div class="extras-grid">
+          <span class="extra-tag">Animaciones</span>
+<span class="extra-tag">Adaptación de formato</span>
+          <span class="extra-tag">Revisión adicional</span>
+          <span class="extra-tag">Miniatura con IA</span>
+        </div>
+      </div>
+
+      <p class="pricing-subtitle">¿Necesitas más videos o duraciones diferentes? Creamos un paquete personalizado según tus necesidades. <a href="#contacto" class="pricing-link">Contáctanos</a></p>
+    </div>
+
+    <!-- Extras -->
+    <div class="extras">
+      <h4>Funcionalidades web adicionales — $29 c/u</h4>
+      <div class="extras-grid">
+        <span class="extra-tag">Menú de platos</span>
+        <span class="extra-tag">Banners y descuentos</span>
+        <span class="extra-tag">Formulario de contacto</span>
+        <span class="extra-tag">Galería de fotos/videos</span>
+        <span class="extra-tag">FAQ</span>
+        <span class="extra-tag">Blog o noticias</span>
+        <span class="extra-tag">WhatsApp</span>
+        <span class="extra-tag">Google Maps</span>
+        <span class="extra-tag">Buscador</span>
+        <span class="extra-tag">Sección de equipo</span>
+        <span class="extra-tag">Calendario de eventos</span>
+        <span class="extra-tag">Descarga de PDFs</span>
+        <span class="extra-tag">Multi-idioma</span>
+        <span class="extra-tag">Modo oscuro</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .pricing-category {
+    margin-bottom: 4rem;
+  }
+
+  .category-title {
+    font-size: 1.3rem;
+    color: var(--color-accent-light);
+    margin-bottom: 1.5rem;
+    padding-left: 1rem;
+    border-left: 3px solid var(--color-accent);
+  }
+
+  .video-showcase {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    align-items: center;
+    margin-bottom: 2.5rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .video-showcase-player {
+    overflow: hidden;
+  }
+
+  .video-showcase-player video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .video-showcase-text {
+    padding: 2rem 2.5rem 2rem 0;
+  }
+
+  .video-showcase-text h3 {
+    font-size: 1.5rem;
+    color: var(--color-text);
+    margin-bottom: 1rem;
+    line-height: 1.3;
+  }
+
+  .video-showcase-text p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-text-secondary);
+  }
+
+  @media (max-width: 768px) {
+    .video-showcase {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+
+    .video-showcase-text {
+      padding: 1.5rem;
+    }
+  }
+
+  .pricing-card {
+    position: relative;
+  }
+
+  .pricing-card.featured {
+    border-color: var(--color-accent);
+    background: linear-gradient(180deg, var(--color-accent-glow), var(--color-surface));
+  }
+
+  .featured-badge {
+    position: absolute;
+    top: -12px;
+    right: 20px;
+    background: var(--color-accent);
+    color: white;
+    padding: 0.3rem 1rem;
+    border-radius: 9999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+
+  .pricing-header {
+    margin-bottom: 1.5rem;
+  }
+
+  .pricing-label {
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+  }
+
+  .pricing-amount {
+    margin: 0.5rem 0;
+  }
+
+  .price {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--color-text);
+  }
+
+  .price-period {
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+  }
+
+  .pricing-features {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .pricing-features li {
+    font-size: 0.95rem;
+    padding-left: 1.5rem;
+    position: relative;
+  }
+
+  .pricing-features li.included {
+    color: var(--color-text-secondary);
+  }
+
+  .pricing-features li.included::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--color-green);
+    font-weight: 700;
+  }
+
+  .pricing-features li.extra {
+    color: var(--color-accent-light);
+  }
+
+  .pricing-features li.extra::before {
+    content: '+';
+    position: absolute;
+    left: 0;
+    color: var(--color-accent-light);
+    font-weight: 700;
+  }
+
+  .pricing-features li.discount {
+    color: var(--color-green);
+  }
+
+  .pricing-features li.discount::before {
+    content: '★';
+    position: absolute;
+    left: 0;
+    font-weight: 700;
+  }
+
+  .pricing-note {
+    font-size: 0.85rem;
+    font-style: italic;
+  }
+
+  .video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+  }
+
+  .video-card {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    position: relative;
+  }
+
+  .video-card.popular {
+    border-color: var(--color-accent);
+  }
+
+  .video-duration {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+
+  .video-card .price {
+    display: block;
+    font-size: 2rem;
+  }
+
+  .price-soles {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+    margin-top: 0.25rem;
+  }
+
+  .video-plans {
+    margin-top: 1.5rem;
+  }
+
+  .video-extras {
+    margin-top: 1.5rem;
+  }
+
+  .pricing-subtitle {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+  }
+
+  .pricing-link {
+    color: var(--color-accent-light);
+    font-weight: 600;
+    transition: color 0.2s;
+  }
+
+  .pricing-link:hover {
+    color: var(--color-accent);
+  }
+
+  .extras {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: 2rem;
+    margin-top: 2rem;
+  }
+
+  .extras h4 {
+    font-size: 1rem;
+    color: var(--color-text);
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+
+  .extras-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .extra-tag {
+    padding: 0.4rem 0.8rem;
+    background: var(--color-surface-2);
+    border: 1px solid var(--color-border);
+    border-radius: 9999px;
+    font-size: 0.8rem;
+    color: var(--color-text-secondary);
+  }
+</style>
