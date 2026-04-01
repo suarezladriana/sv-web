@@ -103,19 +103,22 @@ const videoTiers = precios?.videos ?? [
       <div class="grid-2">
         <div class="card pricing-card">
           <div class="pricing-header">
-            <span class="pricing-label">Pago único</span>
+            <span class="pricing-label">Pago único (por video)</span>
             <div class="pricing-amount">
-              <span class="price">$100</span>
+              <span class="price">Desde $120</span>
             </div>
-            <p>1 video de 30s a 1 min</p>
           </div>
+          <ul class="pricing-features">
+            <li class="included">30s a 1 min — $120</li>
+            <li class="included">1 min a 1.5 min — $180</li>
+            <li class="included">1.5 min a 2 min — $250</li>
+          </ul>
           <ul class="pricing-features">
             <li class="included">Generación con IA</li>
             <li class="included">Edición profesional</li>
             <li class="included">Voz en off con IA</li>
             <li class="included">Música con licencia comercial</li>
             <li class="included">1 revisión incluida</li>
-            <li class="extra">Extras: $29-49 c/u</li>
           </ul>
           <p class="pricing-note">Entrega: 3-5 días hábiles</p>
         </div>
@@ -123,13 +126,17 @@ const videoTiers = precios?.videos ?? [
         <div class="card pricing-card featured">
           <div class="featured-badge">Recomendado</div>
           <div class="pricing-header">
-            <span class="pricing-label">Plan mensual</span>
+            <span class="pricing-label">Plan mensual (3 videos)</span>
             <div class="pricing-amount">
-              <span class="price">$250</span>
+              <span class="price">Desde $300</span>
               <span class="price-period">/mes</span>
             </div>
-            <p>3 videos de 30s a 1 min al mes</p>
           </div>
+          <ul class="pricing-features">
+            <li class="included">30s a 1 min — $300/mes</li>
+            <li class="included">1 min a 1.5 min — $450/mes</li>
+            <li class="included">1.5 min a 2 min — $650/mes</li>
+          </ul>
           <ul class="pricing-features">
             <li class="included">Generación con IA</li>
             <li class="included">Edición profesional</li>
@@ -137,7 +144,7 @@ const videoTiers = precios?.videos ?? [
             <li class="included">Música con licencia comercial</li>
             <li class="included">Revisiones incluidas</li>
             <li class="included">Equipo dedicado</li>
-            <li class="discount">Plan anual: $212/mes (15% dto)</li>
+            <li class="discount">Plan anual: 15% dto</li>
           </ul>
           <p class="pricing-note">Ideal para mantener tus redes activas con contenido profesional.</p>
         </div>
@@ -145,12 +152,14 @@ const videoTiers = precios?.videos ?? [
 
       <!-- Extras de video -->
       <div class="extras video-extras">
-        <h4>Extras para videos — $29-49 c/u</h4>
+        <h4>Extras para videos</h4>
         <div class="extras-grid">
-          <span class="extra-tag">Animaciones</span>
-<span class="extra-tag">Adaptación de formato</span>
-          <span class="extra-tag">Revisión adicional</span>
-          <span class="extra-tag">Miniatura con IA</span>
+          <span class="extra-tag">Animaciones — $29-49</span>
+          <span class="extra-tag">Adaptación de formato — $29-49</span>
+          <span class="extra-tag">Revisión adicional — $29-49</span>
+          <span class="extra-tag">Miniatura con IA — $29-49</span>
+          <span class="extra-tag">Segundos extra — $2.50/seg</span>
+          <span class="extra-tag">Clip adicional IA (8s) — $15</span>
         </div>
       </div>
 
