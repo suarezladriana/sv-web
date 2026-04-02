@@ -3,20 +3,7 @@ import { getKnowledge } from '../lib/airtable';
 
 const knowledge = await getKnowledge();
 
-const fallbackServices = [
-  {
-    icon: '🌐',
-    title: 'Desarrollo Web',
-    description: 'Sitios web modernos con Astro y Svelte. Landing pages, portafolios y gestores de contenido desplegados en Vercel.',
-    features: ['Diseño responsive', 'HTTPS y CDN global', 'Optimización de velocidad'],
-  },
-  {
-    icon: '🎬',
-    title: 'Videos IA',
-    description: 'Tu marca merece más que un video genérico. Usamos IA de última generación para producir contenido que parece de gran presupuesto, pero hecho a tu medida. Para tus redes, tus clientes o tu equipo. Sin plantillas. Sin stock. Solo tu visión, hecha video.',
-    features: ['Videos de 30s a 4 min', 'Proceso creativo IA', 'Edición profesional'],
-    video: '/videos/video-ia-web.mp4',
-  },
+const otherServices = knowledge?.servicios?.filter(s => s.title !== 'Desarrollo Web' && s.title !== 'Videos IA' && s.title !== 'Videos con IA') ?? [
   {
     icon: '🗄️',
     title: 'Base de Datos',
@@ -42,8 +29,6 @@ const fallbackServices = [
     features: ['Notificaciones automáticas', 'Asistente IA', 'Integraciones'],
   },
 ];
-
-const services = knowledge?.servicios ?? fallbackServices;
 ---
 
 <section id="servicios">
@@ -51,29 +36,72 @@ const services = knowledge?.servicios ?? fallbackServices;
     <div class="section-header">
       <span class="badge">Lo que hacemos</span>
       <h2 style="margin-top: 1.5rem;">Servicios</h2>
-      <p>Soluciones pensadas para impulsar tu transformación con tecnología.</p>
+      <p>Soluciones pensadas para impulsar tu negocio con tecnología.</p>
     </div>
-    <div class="grid-3">
-      {services.map(service => (
-        <div class={`card service-card${service.video ? ' has-video' : ''}`}>
-          <span class="service-icon">{service.icon}</span>
-          <h3>{service.title}</h3>
+
+    <!-- Desarrollo Web -->
+    <div class="service-featured">
+      <div class="service-featured-video">
+        <video autoplay loop muted playsinline>
+          <source src="/videos/web-demo-loop.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <div class="service-featured-info">
+        <span class="service-icon">🌐</span>
+        <h3>Desarrollo Web</h3>
+        <p>Sitios web modernos con Astro y Svelte. Landing pages, portafolios y gestores de contenido desplegados en Vercel.</p>
+        <ul class="service-features">
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-green)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Diseño responsive
+          </li>
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-green)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            HTTPS y CDN global
+          </li>
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-green)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Optimización de velocidad
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Videos IA -->
+    <div class="service-featured reverse">
+      <div class="service-featured-video">
+        <video autoplay loop muted playsinline>
+          <source src="/videos/video-ia-web.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <div class="service-featured-info">
+        <span class="service-icon">🎬</span>
+        <h3>Videos IA</h3>
+        <p>Tu marca merece más que un video genérico. Produccion de contenido IA que parece de gran presupuesto, pero hecho a tu medida. Para tus redes, tus clientes o tu equipo.</p>
+        <ul class="service-features">
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-green)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Videos de 30s a 4 min
+          </li>
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-green)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Proceso creativo IA
+          </li>
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-green)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Edición profesional
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Otros servicios -->
+    <div class="services-minimal" style="margin-top: 3rem;">
+      {otherServices.map(service => (
+        <div class="service-minimal-item">
+          <span class="service-minimal-icon">{service.icon}</span>
+          <h4>{service.title}</h4>
           <p>{service.description}</p>
-          {service.video && (
-            <div class="service-video">
-              <video controls preload="metadata" playsinline>
-                <source src={service.video} type="video/mp4" />
-              </video>
-            </div>
-          )}
-          <ul class="service-features">
-            {service.features.map(f => (
-              <li>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-green)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                {f}
-              </li>
-            ))}
-          </ul>
         </div>
       ))}
     </div>
@@ -81,6 +109,49 @@ const services = knowledge?.servicios ?? fallbackServices;
 </section>
 
 <style>
+  .service-featured {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    margin-bottom: 3rem;
+  }
+
+  .service-featured.reverse {
+    direction: rtl;
+  }
+
+  .service-featured.reverse > * {
+    direction: ltr;
+  }
+
+  .service-featured-video {
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+  }
+
+  .service-featured-video video {
+    width: 100%;
+    display: block;
+  }
+
+  .service-featured-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .service-featured-info h3 {
+    color: var(--color-text);
+    font-size: 1.5rem;
+  }
+
+  .service-featured-info p {
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+
   .service-card {
     display: flex;
     flex-direction: column;
@@ -116,15 +187,48 @@ const services = knowledge?.servicios ?? fallbackServices;
     color: var(--color-text-secondary);
   }
 
-  .service-video {
-    margin-top: 0.5rem;
-    border-radius: var(--radius-sm);
-    overflow: hidden;
+  .services-minimal {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
   }
 
-  .service-video video {
-    width: 100%;
-    display: block;
+  .service-minimal-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1.25rem;
+    border: 1px solid var(--color-border);
     border-radius: var(--radius-sm);
+    background: var(--color-surface);
+    flex: 1;
+    min-width: 0;
+  }
+
+  .service-minimal-icon {
+    font-size: 1.5rem;
+  }
+
+  .service-minimal-item h4 {
+    font-size: 0.9rem;
+    color: var(--color-text);
+  }
+
+  .service-minimal-item p {
+    font-size: 0.8rem;
+    line-height: 1.5;
+    color: var(--color-text-secondary);
+  }
+
+  @media (max-width: 768px) {
+    .service-featured,
+    .service-featured.reverse {
+      grid-template-columns: 1fr;
+      direction: ltr;
+    }
+
+    .services-minimal {
+      grid-template-columns: 1fr;
+    }
   }
 </style>

@@ -6,14 +6,14 @@
     <div class="hero-content fade-in">
       <span class="badge">
         <span class="pulse"></span>
-        Consultora de software & contenido IA
+        Agencia de software & contenido IA
       </span>
-      <h1>
-        Tu negocio merece
-        <span class="gradient-text">tecnología que trabaje por ti</span>
+      <h1 class="hero-title">
+        Tú pones la visión,
+        <span class="gradient-text">nosotros lo construimos</span>
       </h1>
       <p class="hero-desc">
-        Creamos sitios web modernos, contenido con IA y soluciones digitales personalizadas.
+        Creamos sitios web modernos, contenido con IA y soluciones digitales personalizadas para tu negocio.
       </p>
       <div class="hero-actions">
         <a href="#contacto" class="btn btn-primary">
@@ -22,22 +22,7 @@
         </a>
         <a href="#servicios" class="btn btn-outline">Ver servicios</a>
       </div>
-      <div class="hero-stats">
-        <div class="stat">
-          <span class="stat-number">2+</span>
-          <span class="stat-label">Años operando</span>
-        </div>
-        <div class="stat-divider"></div>
-        <div class="stat">
-          <span class="stat-number">Claude</span>
-          <span class="stat-label">Stack moderno</span>
-        </div>
-        <div class="stat-divider"></div>
-        <div class="stat">
-          <span class="stat-number">100%</span>
-          <span class="stat-label">Contenido IA</span>
-        </div>
-      </div>
+      <div class="hero-divider"></div>
     </div>
   </div>
   <div class="hero-gradient"></div>
@@ -46,10 +31,10 @@
 <style>
   .hero {
     position: relative;
-    min-height: 100vh;
     display: flex;
     align-items: center;
-    padding-top: 5rem;
+    padding-top: 8rem;
+    padding-bottom: 0;
     overflow: hidden;
   }
 
@@ -73,6 +58,10 @@
   @keyframes pulse {
     0%, 100% { opacity: 1; }
     50% { opacity: 0.4; }
+  }
+
+  .hero-title {
+    margin-top: 1.5rem;
   }
 
   .gradient-text {
@@ -135,10 +124,20 @@
     pointer-events: none;
   }
 
+  .hero-divider {
+    margin-top: 4rem;
+    margin-bottom: 0;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .hero {
+    padding-bottom: 0;
+  }
+
   @media (max-width: 768px) {
     .hero {
       min-height: auto;
-      padding: 8rem 0 4rem;
+      padding: 8rem 0 2rem;
     }
 
     .hero-stats {
