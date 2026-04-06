@@ -3,27 +3,30 @@ import { getKnowledge } from '../lib/airtable';
 
 const knowledge = await getKnowledge();
 
+const iconSvgs = {
+  'Base de Datos': '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-light)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/><path d="M3 12a9 3 0 0 0 18 0"/></svg>',
+  'Gestor de Contenido': '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-light)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z"/></svg>',
+  'Hosting y Dominio': '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-light)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg>',
+  'Automatización IA': '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-light)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>',
+};
+
 const otherServices = knowledge?.servicios?.filter(s => s.title !== 'Desarrollo Web' && s.title !== 'Videos IA' && s.title !== 'Videos con IA') ?? [
   {
-    icon: '🗄️',
     title: 'Base de Datos',
     description: 'Airtable para uso interno y gestores de contenido. Supabase (PostgreSQL) para apps con muchos usuarios.',
     features: ['Migración incluida', 'Administración completa', 'Escalable'],
   },
   {
-    icon: '📝',
     title: 'Gestor de Contenido',
     description: 'Interfaz personalizada para que tu equipo gestione contenido fácilmente, o acceso directo a Airtable.',
     features: ['UI personalizado', 'Fácil de usar', 'Base de datos incluida'],
   },
   {
-    icon: '☁️',
     title: 'Hosting y Dominio',
     description: 'Alojamiento en Vercel con SSL automático, CDN global y monitoreo. Gestionamos tu dominio.',
     features: ['SSL automático', 'Deploy continuo', 'Monitoreo 24/7'],
   },
   {
-    icon: '🤖',
     title: 'Automatización IA',
     description: 'Bot interno con IA, integraciones con Slack, GitHub y Vercel para optimizar flujos de trabajo.',
     features: ['Notificaciones automáticas', 'Asistente IA', 'Integraciones'],
@@ -43,11 +46,13 @@ const otherServices = knowledge?.servicios?.filter(s => s.title !== 'Desarrollo 
     <div class="service-featured">
       <div class="service-featured-video">
         <video autoplay loop muted playsinline>
-          <source src="/videos/web-demo-loop.mp4" type="video/mp4" />
+          <source src="/videos/web-demo-combined.mp4" type="video/mp4" />
         </video>
       </div>
       <div class="service-featured-info">
-        <span class="service-icon">🌐</span>
+        <span class="service-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-light)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </span>
         <h3>Desarrollo Web</h3>
         <p>Sitios web modernos con Astro y Svelte. Landing pages, portafolios y gestores de contenido desplegados en Vercel.</p>
         <ul class="service-features">
@@ -75,7 +80,9 @@ const otherServices = knowledge?.servicios?.filter(s => s.title !== 'Desarrollo 
         </video>
       </div>
       <div class="service-featured-info">
-        <span class="service-icon">🎬</span>
+        <span class="service-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-light)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m22 8-6 4 6 4V8Z"/><rect width="14" height="12" x="2" y="6" rx="2" ry="2"/></svg>
+        </span>
         <h3>Videos IA</h3>
         <p>Tu marca merece más que un video genérico. Produccion de contenido IA que parece de gran presupuesto, pero hecho a tu medida. Para tus redes, tus clientes o tu equipo.</p>
         <ul class="service-features">
@@ -99,7 +106,7 @@ const otherServices = knowledge?.servicios?.filter(s => s.title !== 'Desarrollo 
     <div class="services-minimal" style="margin-top: 3rem;">
       {otherServices.map(service => (
         <div class="service-minimal-item">
-          <span class="service-minimal-icon">{service.icon}</span>
+          <span class="service-minimal-icon" set:html={iconSvgs[service.title] || ''} />
           <h4>{service.title}</h4>
           <p>{service.description}</p>
         </div>
@@ -123,6 +130,12 @@ const otherServices = knowledge?.servicios?.filter(s => s.title !== 'Desarrollo 
 
   .service-featured.reverse > * {
     direction: ltr;
+  }
+
+  .service-featured-videos {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
   }
 
   .service-featured-video {
@@ -161,6 +174,7 @@ const otherServices = knowledge?.servicios?.filter(s => s.title !== 'Desarrollo 
   .service-icon {
     font-size: 2rem;
     margin-bottom: 0.5rem;
+    line-height: 1;
   }
 
   .service-card h3 {
@@ -207,6 +221,9 @@ const otherServices = knowledge?.servicios?.filter(s => s.title !== 'Desarrollo 
 
   .service-minimal-icon {
     font-size: 1.5rem;
+    line-height: 1;
+    display: flex;
+    align-items: center;
   }
 
   .service-minimal-item h4 {
