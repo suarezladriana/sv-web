@@ -54,6 +54,7 @@ const otherServices = knowledge?.servicios?.filter(s => s.title !== 'Desarrollo 
           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-light)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
         </span>
         <h3>Desarrollo Web</h3>
+        <p class="service-price">Desde <strong>$65/mes</strong></p>
         <p>Sitios web modernos con Astro y Svelte. Landing pages, portafolios y gestores de contenido desplegados en Vercel.</p>
         <ul class="service-features">
           <li>
@@ -84,6 +85,7 @@ const otherServices = knowledge?.servicios?.filter(s => s.title !== 'Desarrollo 
           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-light)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m22 8-6 4 6 4V8Z"/><rect width="14" height="12" x="2" y="6" rx="2" ry="2"/></svg>
         </span>
         <h3>Videos IA</h3>
+        <p class="service-price">Desde <strong>$80</strong> por video</p>
         <p>Tu marca merece más que un video genérico. Produccion de contenido IA que parece de gran presupuesto, pero hecho a tu medida. Para tus redes, tus clientes o tu equipo.</p>
         <ul class="service-features">
           <li>
@@ -163,6 +165,16 @@ const otherServices = knowledge?.servicios?.filter(s => s.title !== 'Desarrollo 
   .service-featured-info p {
     font-size: 0.95rem;
     line-height: 1.7;
+  }
+
+  .service-price {
+    font-size: 1.05rem !important;
+    color: var(--color-accent-light) !important;
+  }
+
+  .service-price strong {
+    color: var(--color-text);
+    font-weight: 700;
   }
 
   .service-card {

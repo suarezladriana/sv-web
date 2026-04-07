@@ -16,9 +16,9 @@ const videoTiers = precios?.videos ?? [
 <section id="precios">
   <div class="container">
     <div class="section-header">
-      <span class="badge">Transparencia total</span>
-      <h2 style="margin-top: 1.5rem;">Precios</h2>
-      <p>Sin sorpresas, conoce todas nuestras tarifas.</p>
+      <span class="badge">Lo que incluye cada plan</span>
+      <h2 style="margin-top: 1.5rem;">Paquetes</h2>
+      <p>Conoce el detalle de todo lo que ofrecemos en cada paquete.</p>
     </div>
 
     <!-- Web Pricing -->
@@ -28,29 +28,20 @@ const videoTiers = precios?.videos ?? [
         <div class="card pricing-card-col recommended">
           <span class="rec-badge">Recomendado</span>
           <span class="pricing-label">Operación mensual</span>
-          <div class="pricing-amount">
-            <span class="price">$65</span>
-            <span class="price-period">/mes</span>
-          </div>
-          <p>Todo incluido para que tu web funcione</p>
+          <p class="package-desc">Todo incluido para que tu web funcione</p>
           <ul class="pricing-features">
             <li class="included">Hosting + dominio (Vercel)</li>
             <li class="included">Base de datos (Airtable)</li>
             <li class="included">Gestión de contenido</li>
             <li class="included">Monitoreo continuo</li>
             <li class="included">Actualizaciones vía correo o Slack</li>
-            <li class="discount">Plan anual: $55/mes (ahorra $120/año)</li>
           </ul>
           <p class="pricing-note">El código y datos son tuyos. Si dejas el servicio, se entrega todo.</p>
-          <p class="pricing-soles" id="precioWebMensual"></p>
         </div>
 
         <div class="card pricing-card-col">
           <span class="pricing-label">Pago único</span>
-          <div class="pricing-amount">
-            <span class="price">$200</span>
-          </div>
-          <p>Creación de página web a medida</p>
+          <p class="package-desc">Creación de página web a medida</p>
           <ul class="pricing-features">
             <li class="included">Diseño, desarrollo y publicación</li>
             <li class="included">Diseño responsive</li>
@@ -58,10 +49,8 @@ const videoTiers = precios?.videos ?? [
             <li class="included">Optimización de velocidad</li>
             <li class="included">Botón de WhatsApp incluido</li>
             <li class="included">Páginas legales incluidas</li>
-            <li class="extra">Funcionalidades extras: $29 c/u</li>
           </ul>
           <p class="pricing-note">Entrega: 5-7 días hábiles</p>
-          <p class="pricing-soles" id="precioWebUnico"></p>
         </div>
 
         <div class="extras-inside">
@@ -93,29 +82,20 @@ const videoTiers = precios?.videos ?? [
         <div class="card pricing-card-col recommended">
           <span class="rec-badge">Recomendado</span>
           <span class="pricing-label">Plan mensual (3 videos)</span>
-          <div class="pricing-amount">
-            <span class="price">$180</span>
-            <span class="price-period">/mes</span>
-          </div>
-          <p>Videos desde 30 segundos</p>
+          <p class="package-desc">Videos desde 30 segundos</p>
           <ul class="pricing-features">
             <li class="included">Generación con IA</li>
             <li class="included">Edición profesional</li>
             <li class="included">Voz en off con IA</li>
             <li class="included">Música con licencia comercial</li>
             <li class="included">Revisiones incluidas</li>
-            <li class="discount">Plan anual: 15% dto</li>
           </ul>
           <p class="pricing-note">Ideal para mantener tus redes activas con contenido profesional.</p>
-          <p class="pricing-soles" id="precioVideoMensual"></p>
         </div>
 
         <div class="card pricing-card-col">
           <span class="pricing-label">Pago único (por video)</span>
-          <div class="pricing-amount">
-            <span class="price">$80</span>
-          </div>
-          <p>Videos desde 30 segundos</p>
+          <p class="package-desc">Videos desde 30 segundos</p>
           <ul class="pricing-features">
             <li class="included">Generación con IA</li>
             <li class="included">Edición profesional</li>
@@ -124,7 +104,6 @@ const videoTiers = precios?.videos ?? [
             <li class="included">1 revisión incluida</li>
           </ul>
           <p class="pricing-note">Entrega: 3-5 días hábiles</p>
-          <p class="pricing-soles" id="precioVideoUnico"></p>
         </div>
 
         <div class="extras-inside">
@@ -380,6 +359,11 @@ const videoTiers = precios?.videos ?? [
     font-weight: 700;
   }
 
+  .package-desc {
+    margin-top: 0.5rem;
+    font-size: 0.95rem;
+  }
+
   .pricing-features li.discount {
     color: var(--color-green);
   }
@@ -495,25 +479,3 @@ const videoTiers = precios?.videos ?? [
   }
 </style>
 
-<script>
-  async function actualizarTipoCambio() {
-    try {
-      const res = await fetch('https://open.er-api.com/v6/latest/USD');
-      const data = await res.json();
-      const tc = data.rates.PEN;
-
-      const unico = document.getElementById('precioVideoUnico');
-      const mensual = document.getElementById('precioVideoMensual');
-      const webUnico = document.getElementById('precioWebUnico');
-      const webMensual = document.getElementById('precioWebMensual');
-
-      if (unico) unico.textContent = `Aprox. S/${(80 * tc).toFixed(0)} PEN (TC: S/${tc.toFixed(2)})`;
-      if (mensual) mensual.textContent = `Aprox. S/${(180 * tc).toFixed(0)} PEN/mes (TC: S/${tc.toFixed(2)})`;
-      if (webUnico) webUnico.textContent = `Aprox. S/${(200 * tc).toFixed(0)} PEN (TC: S/${tc.toFixed(2)})`;
-      if (webMensual) webMensual.textContent = `Aprox. S/${(65 * tc).toFixed(0)} PEN/mes (TC: S/${tc.toFixed(2)})`;
-    } catch (e) {
-      // Si falla la API, no mostrar nada
-    }
-  }
-  actualizarTipoCambio();
-</script>
